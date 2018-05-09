@@ -1,0 +1,23 @@
+Sub SaveEmail()
+  Set Shex = CreateObject("Shell.Application")
+  Dim oMail As Outlook.MailItem
+  Dim objItem As Object
+  Dim sPath As String
+  Dim dtDate As Date
+  Dim sName As String
+  Dim enviro As String
+ 
+    enviro = CStr(Environ("USERPROFILE"))
+   For Each objItem In ActiveExplorer.Selection
+   If objItem.MessageClass = "IPM.Note" Then
+    Set oMail = objItem
+   
+  sName = oMail.Subject
+  
+  oMail.SaveAs ("C:\Temp\message.txt"), _
+      olTXT
+  
+  End If
+  Shex.Open ("C:\Temp\IOC-Extractor.py")
+  Next
+End Sub
